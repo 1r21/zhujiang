@@ -7,7 +7,8 @@
   export let article: News;
 
   onMount(async () => {
-    const article = await getNewsById("354");
+    const id = location.pathname.replace(/\/\w+\/(\d)/, "$1");
+    const article = await getNewsById(id);
     texts = parseText(article.transcript);
   });
 </script>
@@ -31,5 +32,9 @@
       </a>
     </p>
   </div>
-  <audio controls src={article?.src} class="fixed bottom-2 w-3/5 outline-none" />
+  <audio
+    controls
+    src={article?.src}
+    class="fixed bottom-2 w-3/5 outline-none"
+  />
 </div>
